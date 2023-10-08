@@ -12,7 +12,7 @@ const contactsRouter = require('./routes/api/contacts')
 let app = express()
 app.use(cors())
 app.use(express.json())
-app.use('/api/books', contactsRouter)
+app.use('/api/contacts', contactsRouter)
 
 
 app.use((err,req,res,next) => {
