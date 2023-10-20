@@ -1,9 +1,7 @@
-const fs = require('fs/promises')
-let users = require('./users')
-let {nanoid} = require('nanoid')
-let path = require('path')
-const cors = require('cors')
 
+const cors = require('cors')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv').config()
 
 let express = require('express')
 
@@ -19,7 +17,20 @@ app.use((err,req,res,next) => {
    res.status(500).json({message:err.message}) 
 })
 
-app.listen(3001)
+const {DB_HOST} = process.env
+
+
+mongoose.connect(DB_HOST)
+   .then(() => {
+      app.listen(3001)
+      console.log('connected')
+   })
+   .catch((err) => {
+      console.llog(err.message)
+      process.exit(1)
+      
+})
+
 
 // fs.readFile("./db/contacts.json")
 //     .then((data) => {console.log(data.toString())})

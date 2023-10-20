@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const cntrl = require('../../helpers/contrl')
+const cntrl = require('../../controls/contrl')
 
 
-router.get('/', cntrl.add)
+router.get('/', cntrl.all)
 router.get('/:id', cntrl.getById)
 router.post('/', cntrl.post)
 router.put('/:id',cntrl.put)
