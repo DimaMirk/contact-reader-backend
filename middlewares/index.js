@@ -1,7 +1,8 @@
 // export { default as isEmptyBody } from "./isEmptyBody.js";
-// export { default as isValidId } from "./isValidId.js";
-const { validateBody } = require('./validateBody.js')
+const isValidId = require("./isValidId.js")
+const validateBody = require('./validateBody.js')
 
 module.exports = {
-    validateBody
+    validateBody,
+    isValidId
 }
