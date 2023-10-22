@@ -1,13 +1,7 @@
 const Contact = require('../models/contact')
-const Joi = require('joi')
 
 const { HttpError } = require('../helpers')
 const { CtrlWrapper } = require('../helpers')
-let objectShema = Joi.object({
-    email: Joi.string().required(),
-    phone: Joi.string().required(),
-    name: Joi.string().required()
-})
 
 const all = async(req , res) => {
     let allContacts = await Contact.find()
@@ -25,22 +19,12 @@ const getById = async (req, res) => {
 }
 
 const post = async (req, res) => {
-    const { error } = objectShema.validate(req.body)
-    if (error) {
-        throw HttpError(400,error.message)
-    }
     const result = await Contact.create(req.body)
     res.status(201).json(result)
 }
 
 const put = async (req, res) => {
     let id = req.params.id
-
-    const { error } = objectShema.validate(req.body)
-    if (error) {
-        throw HttpError(400,error.message)
-    }
-       
     let result = await Contact.findByIdAndUpdate(id, req.body, { new: true })
     if (!result) {
         throw HttpError(404,'Not found')
