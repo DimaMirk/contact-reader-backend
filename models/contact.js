@@ -12,6 +12,11 @@ const contactSchema = new Schema({
     operator: {
         type: String,
         default:'Vodafone'
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true,
     }
 }, { versionKey: false, timestamps: true })
 
